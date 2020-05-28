@@ -13,6 +13,26 @@ var config = {
 
   firebase.initializeApp(config)
 
-  firebase.database().ref().set({
-        name: 'Theo Tziomakas'
+  const database = firebase.database()
+
+  database.ref().set({
+        name: 'Theo Tziomakas',
+        age: 38,
+        isSingle: true,
+        location: {
+            city: 'Larisa',
+            country: 'Greece'
+        }
   })
+
+
+// database.ref().set('This is my data')
+
+// database.ref('age').set(39)
+
+// database.ref('location/city').set('Athens')
+
+database.ref('attribute').set({
+    height: 1.83,
+    weight: 89
+})
