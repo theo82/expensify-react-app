@@ -23,7 +23,11 @@ var config = {
             city: 'Larisa',
             country: 'Greece'
         }
-  })
+  }).then(()=>{
+      console.log('Data is saved');
+  }).catch((e) => {
+    console.log('This failed', e)
+  });
 
 
 // database.ref().set('This is my data')
@@ -35,4 +39,11 @@ var config = {
 database.ref('attribute').set({
     height: 1.83,
     weight: 89
+}).then(() => {
+    console.log('Data changed')
+}).catch((e) => {
+    console.log('Things did not work for the attribute',e)
+
 })
+
+console.log('I made a request to change the data');  
