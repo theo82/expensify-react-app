@@ -15,35 +15,55 @@ var config = {
 
   const database = firebase.database()
 
-  database.ref().set({
-        name: 'Theo Tziomakas',
-        age: 38,
-        isSingle: true,
-        location: {
-            city: 'Larisa',
-            country: 'Greece'
-        }
-  }).then(()=>{
-      console.log('Data is saved');
-  }).catch((e) => {
-    console.log('This failed', e)
-  });
+  database.ref().on('value',(snapshot) => {
+      const val = snapshot.val();
+      console.log(`${val.name} is a ${val.job.title} at ${val.job.company}`)
+  })
+//   database.ref().on('value', (snapshot) => {
+//     console.log(snapshot.val());
+//   });
+//   database.ref('location/city')
+//     .once('value')
+//     .then((snapshot) => {
+//         const val = snapshot.val()
+//         console.log(val)
+//     })
+//     .catch((e) => {
+//         console.log('Error fetching data', e);
+//     })
+//   database.ref().set({
+//         name: 'Theo Tziomakas',
+//         age: 38,
+//         isSingle: true,
+//         stressLevel: 6,
+//         job: {
+//             title: 'Software developer',
+//             company: 'Google'
+//         },
+//         location: {
+//             city: 'Larisa',
+//             country: 'Greece'
+//         }
+//   }).then(()=>{
+//       console.log('Data is saved');
+//   }).catch((e) => {
+//     console.log('This failed', e)
+//   });
 
+// database.ref().update({
+//     name: 'Mike',
+//     age: 29,
+//     job: 'Software developer',
+//     isSingle: null
+// });
 
-// database.ref().set('This is my data')
+// database.ref().update({
+//     job: 'Manager',
+//     'location/city': 'Thessaloniki'
+// })
 
-// database.ref('age').set(39)
-
-// database.ref('location/city').set('Athens')
-
-database.ref('attribute').set({
-    height: 1.83,
-    weight: 89
-}).then(() => {
-    console.log('Data changed')
-}).catch((e) => {
-    console.log('Things did not work for the attribute',e)
-
-})
-
-console.log('I made a request to change the data');  
+// database.ref().update({
+//     stressLevel: 9,
+//     'job/company': 'Amazon',
+//     'location/city': 'Larisa'
+// })
