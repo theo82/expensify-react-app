@@ -14,11 +14,57 @@ var config = {
   firebase.initializeApp(config)
 
   const database = firebase.database()
+  
+//   database.ref('expenses').push({
+//       description: 'Nice phone',
+//       note: 'Iphone GS',
+//       amount: 565,
+//       createdAt: '09/06/2020'
+//   })
 
-  database.ref().on('value',(snapshot) => {
-      const val = snapshot.val();
-      console.log(`${val.name} is a ${val.job.title} at ${val.job.company}`)
-  })
+//   database.ref('expenses').push({
+//     description: 'Nice bike',
+//     note: 'IDEAL Prorider',
+//     amount: 450,
+//     createdAt: '09/06/2020'
+// })
+
+// database.ref('expenses').push({
+//     description: 'Nice drone',
+//     note: 'Mavic Air',
+//     amount: 865,
+//     createdAt: '09/06/2020'
+// })
+
+database.ref('expenses/-M8Zn9k5ZwG9m4MchM1w').update({
+    note: 'IDEAL Zig-Zag'
+})
+
+database.ref('expenses/-M8Zn9k5ZwG9m4MchM1w').remove();
+
+//    database.ref('notes/-M8ZbyqX8hvOC2zkqz4d').remove();
+//   database.ref('notes').push({
+//       title: 'Course topics',
+//       body: 'React Native, Angular, Python'
+//   })
+//   const firebaseNotes = {
+//       notes: {
+//           sfdsdfdfs: {
+//               title: {
+//                   title: 'First note!',
+//                   body: 'This is my note'
+//               },
+//               sfdsdfsdfdsf: {
+//                   title: 'Another note!',
+//                   body: 'This is my note'
+//               }
+//           }
+//       }
+//   }
+//   database.ref().on('value',(snapshot) => {
+//       const val = snapshot.val();
+//       console.log(`${val.name} is a ${val.job.title} at ${val.job.company}`)
+//   })
 //   database.ref().on('value', (snapshot) => {
 //     console.log(snapshot.val());
 //   });
