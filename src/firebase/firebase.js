@@ -14,7 +14,53 @@ var config = {
   firebase.initializeApp(config)
 
   const database = firebase.database()
+
+//   database.ref('expenses').on('child_removed', (snapshot) => {
+//       console.log(snapshot.val())
+//   })
+  database.ref('expenses').on('child_changed', (snapshot) => {
+    console.log(snapshot.val())
+
+  database.ref('expenses').on('child_added', (snapshot) => {
+        console.log(snapshot.val())   
+})
+//   database.ref('expenses')
+//     .on('value', (snapshot) => {
+//         const expenses = [];
+
+//         snapshot.forEach((childSnapshot) => {
+//             expenses.push({
+//                 id: childSnapshot.key,
+//                 ...childSnapshot.val()
+//             })
+//         });
+//         console.log(expenses);
+//     });
+
+
+//   database.ref('expenses')
+//     .once('value')
+//     .then((snapshot) => {
+//         const expenses = [];
+        
+//         snapshot.forEach((childSnapShot) => {
+//             expenses.push({
+//                 id: childSnapShot.key,
+//                 ...childSnapShot.val()
+//             })
+//         })
+
+//         console.log(expenses);
+//     })
+
   
+//   database.ref('expenses')
+//     .once('value')
+//     .then((snapshot) => {
+//         console.log(snapshot.val());
+//     })
+
+
 //   database.ref('expenses').push({
 //       description: 'Nice phone',
 //       note: 'Iphone GS',
@@ -22,25 +68,19 @@ var config = {
 //       createdAt: '09/06/2020'
 //   })
 
-//   database.ref('expenses').push({
-//     description: 'Nice bike',
-//     note: 'IDEAL Prorider',
-//     amount: 450,
-//     createdAt: '09/06/2020'
-// })
+  database.ref('expenses').push({
+    description: 'Nice bike',
+    note: 'IDEAL Prorider',
+    amount: 450,
+    createdAt: '09/06/2020'
+})
 
 // database.ref('expenses').push({
 //     description: 'Nice drone',
 //     note: 'Mavic Air',
 //     amount: 865,
 //     createdAt: '09/06/2020'
-// })
-
-database.ref('expenses/-M8Zn9k5ZwG9m4MchM1w').update({
-    note: 'IDEAL Zig-Zag'
-})
-
-database.ref('expenses/-M8Zn9k5ZwG9m4MchM1w').remove();
+// }
 
 //    database.ref('notes/-M8ZbyqX8hvOC2zkqz4d').remove();
 //   database.ref('notes').push({
@@ -113,3 +153,4 @@ database.ref('expenses/-M8Zn9k5ZwG9m4MchM1w').remove();
 //     'job/company': 'Amazon',
 //     'location/city': 'Larisa'
 // })
+})
