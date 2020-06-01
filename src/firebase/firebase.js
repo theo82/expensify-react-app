@@ -11,20 +11,53 @@ var config = {
     measurementId: "G-D14P1ZYP4S"
   };
 
-  firebase.initializeApp(config)
+  firebase.initializeApp(config);
 
-  const database = firebase.database()
+  const database = firebase.database();
+  
+  export { firebase, database as default };
 
+//   database.ref('expenses')
+//     .push({
+//         description: 'Nice phone',
+//         amount: 565,
+//         title: 'Iphone GS',
+//         createdAt: '27/10/2020'
+//     })
+//   database.ref('expenses')
+//     .push({
+//         description: 'Nice bike',
+//         amount: 450,
+//         title: 'IDEAL Prorider' ,
+//         createdAt: '27/05/2020' 
+//     }) 
+//   database.ref('expenses')
+//     .push({
+//         description: 'Nice machine',
+//         amount: 2182,
+//         title: 'MacBook Pro' ,
+//         createdAt: '06/07/2017' 
+//     })     
+
+// database.ref('expenses/-M8cy1cCKM29X_r7klFA').update({
+//     amount: '499'
+// })
 //   database.ref('expenses').on('child_removed', (snapshot) => {
 //       console.log(snapshot.val())
 //   })
-  database.ref('expenses').on('child_changed', (snapshot) => {
-    console.log(snapshot.val())
-
-  database.ref('expenses').on('child_added', (snapshot) => {
-        console.log(snapshot.val())   
-})
-//   database.ref('expenses')
+      
+//    database.ref('expenses')
+//        .on('value', (snapshot) => {
+//            const expenses = [];
+//            snapshot.forEach((childSnapshot) => {
+//                expenses.push({
+//                    id: childSnapshot.key,
+//                    ...childSnapshot.val()
+//                })
+//            });
+//            console.log(expenses)
+//     })
+//  database.ref('expenses')
 //     .on('value', (snapshot) => {
 //         const expenses = [];
 
@@ -68,12 +101,12 @@ var config = {
 //       createdAt: '09/06/2020'
 //   })
 
-  database.ref('expenses').push({
-    description: 'Nice bike',
-    note: 'IDEAL Prorider',
-    amount: 450,
-    createdAt: '09/06/2020'
-})
+//   database.ref('expenses').push({
+//     description: 'Nice bike',
+//     note: 'IDEAL Prorider',
+//     amount: 450,
+//     createdAt: '09/06/2020'
+// })
 
 // database.ref('expenses').push({
 //     description: 'Nice drone',
@@ -153,4 +186,4 @@ var config = {
 //     'job/company': 'Amazon',
 //     'location/city': 'Larisa'
 // })
-})
+
