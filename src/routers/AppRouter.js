@@ -6,13 +6,15 @@ import HelpPage from '../components/HelpPage'
 import EditExpensePage from '../components/EditExpensePage'
 import NotFoundPage from '../components/NotFoundPage'
 import { BrowserRouter, Route, Switch, Link, NavLink } from 'react-router-dom'
+import { LoginPage } from '../components/LoginPage';
 
 const AppRouter = () => (
         <BrowserRouter>
             <div>
                 <Header />
                 <Switch>
-                    <Route path="/" component={ExpenseDahsboardPage} exact={true}/>
+                    <Route path="/" component={LoginPage} exact={true} />
+                    <Route path="/dashboard" component={ExpenseDahsboardPage} />
                     <Route path="/create" component={AddExpensePage} />
                     <Route path="/edit/:id" component={EditExpensePage} />
                     <Route path="/help" component={HelpPage} />
