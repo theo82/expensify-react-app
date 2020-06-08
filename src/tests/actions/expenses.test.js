@@ -6,12 +6,14 @@ import {
         editExpense, 
         setExpenses, 
         startSetExpenses, 
-        startRemoveExpense
+        startRemoveExpense,
+        startEditExpense
  } from '../../actions/expenses';
 import expenses from '../fixtures/expenses';
 import database from "../../firebase/firebase";
 import thunk from 'redux-thunk';
 import { configure } from 'enzyme';
+import { create } from "react-test-renderer";
 
 const createMockStore = configureMockStore([thunk]);
 
@@ -137,6 +139,23 @@ test('should fetch the expenses from firebase', (done) => {
       type: 'SET_EXPENSES',
       expenses
     });
+    done();
+  });
+});
+
+test('should edit expense from firebase', () => {
+  const store = createMockStore({});
+  const id = expenses[0].id;
+  const updates = { amount: 21045 }
+  store.dispatch(startEditExpense(id, updates)).then(() => {
+    expect(actions[0]).toEqual({
+      type: 'EDIT_EXPENSE',
+      id,
+      updates
+    });
+    return database.ref(`expenses/${id}`).once('value');
+  }).then((snapshot) => {
+    expect(snapshot.val().amount).toBe(updates.amount)
     done();
   });
 });
