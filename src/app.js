@@ -9,7 +9,7 @@ import 'normalize.css/normalize.css'
 import AppRouter, { history } from './routers/AppRouter'
 import configureStore from './store/configureStore'
 import { startSetExpenses } from './actions/expenses'
-import { setTextFilter } from './actions/filters'
+import { login, logout } from './actions/auth'
 import getVisibleExpenses from './selectors/expenses';
 import './styles/styles.scss'
 import 'react-dates/lib/css/_datepicker.css';
@@ -41,6 +41,7 @@ store.dispatch(startSetExpenses()).then(() => {
 
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
+      store.dispatch(login(user))
       store.dispatch(startSetExpenses()).then(() => {
         renderApp();
         if(history.location.pathname === '/'){
@@ -49,6 +50,7 @@ firebase.auth().onAuthStateChanged((user) => {
       });
     } else {
       renderApp();
+      store.dispatch(logout());
       history.push('/');
     }
 });
