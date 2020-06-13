@@ -11,9 +11,8 @@ export const startLogin = () => {
   }
 };
 
-export const logout = (uid) => ({
-  type: 'LOGOUT',
-  uid
+export const logout = () => ({
+  type: 'LOGOUT'
 })
 
 export const startLogout = () => {
